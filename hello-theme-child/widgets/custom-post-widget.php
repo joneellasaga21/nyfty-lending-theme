@@ -6,6 +6,7 @@ use Elementor\Group_Control_Css_Filter;
 use Elementor\Group_Control_Image_Size;
 use Elementor\Group_Control_Typography;
 use Elementor\Group_Control_Text_Stroke;
+use Elementor\Group_Control_Box_Shadow;
 use Elementor\Icons_Manager;
 use Elementor\Utils;
 use Elementor\Widget_Base;
@@ -241,6 +242,8 @@ class Elementor_Custom_Post_Widget extends Widget_Base {
 
         $this->register_design_layout_controls();
 
+        $this->register_design_card_controls();
+
         $this->register_design_content_controls();
     }
     /**
@@ -422,6 +425,408 @@ class Elementor_Custom_Post_Widget extends Widget_Base {
             ]
         );
 
+        $this->add_control(
+            'heading_badge_style',
+            [
+                'label' => esc_html__( 'Badge', 'elementor-pro' ),
+                'type' => Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
+
+        $this->add_control(
+            'badge_bg_color',
+            [
+                'label' => esc_html__( 'Background Color', 'elementor-pro' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .elementor-post__card .custom-post__badge span' => 'background-color: {{VALUE}};',
+                ],
+                'global' => [
+                    'default' => Global_Colors::COLOR_ACCENT,
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'badge_color',
+            [
+                'label' => esc_html__( 'Text Color', 'elementor-pro' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .elementor-post__card .custom-post__badge' => 'color: {{VALUE}};',
+                ]
+            ]
+        );
+
+        $this->add_control(
+            'badge_radius',
+            [
+                'label' => esc_html__( 'Border Radius', 'elementor-pro' ),
+                'type' => Controls_Manager::SLIDER,
+                'range' => [
+                    'px' => [
+                        'max' => 50,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .elementor-post__card .custom-post__badge span' => 'border-radius: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+        $this->add_group_control(
+            Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'badge_box_shadow',
+                'exclude' => [
+                    'box_shadow_position',
+                ],
+                'selector' => '{{WRAPPER}} .elementor-post__card .custom-post__badge span',
+            ]
+        );
+        $this->add_responsive_control(
+            'badge_padding',
+            [
+                'label' => esc_html__( 'Padding', 'elementor-pro' ),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', 'em', '%' ],
+                'selectors' => [
+                    '{{WRAPPER}} .elementor-post__card .custom-post__badge span' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+                'separator' => 'before',
+            ]
+        );
+        $this->add_responsive_control(
+            'badge_margin',
+            [
+                'label' => esc_html__( 'Margin', 'elementor-pro' ),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', 'em', '%' ],
+                'selectors' => [
+                    '{{WRAPPER}} .elementor-post__card .custom-post__badge span' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+                'separator' => 'after',
+            ]
+        );
+
+        $this->add_control(
+            'badge_size',
+            [
+                'label' => esc_html__( 'Size', 'elementor-pro' ),
+                'type' => Controls_Manager::SLIDER,
+                'range' => [
+                    'px' => [
+                        'min' => 5,
+                        'max' => 50,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .elementor-post__card .custom-post__badge' => 'font-size: {{SIZE}}{{UNIT}}',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'badge_spacing',
+            [
+                'label' => esc_html__( 'Spacing', 'elementor-pro' ),
+                'type' => Controls_Manager::SLIDER,
+                'range' => [
+                    'px' => [
+                        'max' => 50,
+                    ],
+                ],
+                'default' => [
+                    'size' => 20,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .elementor-post__card .custom-post__badge' => 'margin-bottom: {{SIZE}}{{UNIT}}',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Typography::get_type(),
+            [
+                'name' => 'badge_typography',
+                'global' => [
+                    'default' => Global_Typography::TYPOGRAPHY_ACCENT,
+                ],
+                'selector' => '{{WRAPPER}} .elementor-post__card .custom-post__badge',
+                'exclude' => [ 'font_size', 'line-height' ],
+            ]
+        );
+
+        $this->add_control(
+            'heading_meta_style',
+            [
+                'label' => esc_html__( 'Meta', 'elementor-pro' ),
+                'type' => Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
+        $this->add_control(
+            'meta_color',
+            [
+                'label' => esc_html__( 'Color', 'elementor-pro' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .elementor-post__meta-data' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+        $this->add_group_control(
+            Group_Control_Typography::get_type(),
+            [
+                'name' => 'meta_typography',
+                'global' => [
+                    'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
+                ],
+                'selector' => '{{WRAPPER}} .elementor-post__meta-data',
+            ]
+        );
+        $this->add_responsive_control(
+            'meta_padding',
+            [
+                'label' => esc_html__( 'Padding', 'elementor-pro' ),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', 'em', '%' ],
+                'selectors' => [
+                    '{{WRAPPER}} .elementor-post__meta-data' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+                'separator' => 'before',
+            ]
+        );
+        $this->add_responsive_control(
+            'meta_spacing',
+            [
+                'label' => esc_html__( 'Spacing', 'elementor-pro' ),
+                'type' => Controls_Manager::SLIDER,
+                'range' => [
+                    'px' => [
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .elementor-post__meta-data' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+        $this->add_control(
+            'heading_excerpt_style',
+            [
+                'label' => esc_html__( 'Excerpt', 'elementor-pro' ),
+                'type' => Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
+        $this->add_control(
+            'excerpt_color',
+            [
+                'label' => esc_html__( 'Color', 'elementor-pro' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .custom-post__excerpt p' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .meta-read-meter' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Typography::get_type(),
+            [
+                'name' => 'excerpt_typography',
+                'global' => [
+                    'default' => Global_Typography::TYPOGRAPHY_TEXT,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .custom-post__excerpt p',
+                    '{{WRAPPER}} .meta-read-meter',
+                ]
+            ]
+        );
+        $this->add_responsive_control(
+            'excerpt_spacing',
+            [
+                'label' => esc_html__( 'Spacing', 'elementor-pro' ),
+                'type' => Controls_Manager::SLIDER,
+                'range' => [
+                    'px' => [
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .custom-post__excerpt' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'meter_spacing',
+            [
+                'label' => esc_html__( 'Read Timer Spacing', 'elementor-pro' ),
+                'type' => Controls_Manager::SLIDER,
+                'range' => [
+                    'px' => [
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .meta-read-meter' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+
+        $this->end_controls_section();
+    }
+
+    public function register_design_card_controls() {
+        $this->start_controls_section(
+            'section_design_card',
+            [
+                'label' => esc_html__( 'Card', 'elementor-pro' ),
+                'tab' => Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+        $this->add_control(
+            'card_bg_color',
+            [
+                'label' => esc_html__( 'Background Color', 'elementor-pro' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .elementor-post__card' => 'background-color: {{VALUE}}',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'card_border_color',
+            [
+                'label' => esc_html__( 'Border Color', 'elementor-pro' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .elementor-post__card' => 'border-color: {{VALUE}}',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'card_border_width',
+            [
+                'label' => esc_html__( 'Border Width', 'elementor-pro' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => [ 'px' ],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 15,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .elementor-post__card' => 'border-width: {{SIZE}}{{UNIT}}',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'card_border_radius',
+            [
+                'label' => esc_html__( 'Border Radius', 'elementor-pro' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => [ 'px', '%' ],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 200,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .elementor-post__card' => 'border-radius: {{SIZE}}{{UNIT}}',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'box_box_shadow',
+                'exclude' => [
+                    'box_shadow_position',
+                ],
+                'selector' => '{{WRAPPER}} .elementor-post__card',
+            ]
+        );
+
+        $this->add_control(
+            'card_padding',
+            [
+                'label' => esc_html__( 'Horizontal Padding', 'elementor-pro' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => [ 'px' ],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 50,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .elementor-post__text' => 'padding: 0 {{SIZE}}{{UNIT}}',
+                    '{{WRAPPER}} .elementor-post__meta-data' => 'padding: 10px {{SIZE}}{{UNIT}}',
+                    '{{WRAPPER}} .elementor-post__avatar' => 'padding-right: {{SIZE}}{{UNIT}}; padding-left: {{SIZE}}{{UNIT}}',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'card_vertical_padding',
+            [
+                'label' => esc_html__( 'Vertical Padding', 'elementor-pro' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => [ 'px' ],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 50,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .elementor-post__card' => 'padding-top: {{SIZE}}{{UNIT}}; padding-bottom: {{SIZE}}{{UNIT}}',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'hover_effect',
+            [
+                'label' => esc_html__( 'Hover Effect', 'elementor-pro' ),
+                'type' => Controls_Manager::SELECT,
+                'label_block' => false,
+                'options' => [
+                    'none' => esc_html__( 'None', 'elementor-pro' ),
+                    'gradient' => esc_html__( 'Gradient', 'elementor-pro' ),
+                    //'zoom-in' => esc_html__( 'Zoom In', 'elementor-pro' ),
+                    //'zoom-out' => esc_html__( 'Zoom Out', 'elementor-pro' ),
+                ],
+                'default' => 'gradient',
+                'separator' => 'before',
+                'prefix_class' => 'elementor-posts__hover-',
+            ]
+        );
+
+        $this->add_control(
+            'meta_border_color',
+            [
+                'label' => esc_html__( 'Meta Border Color', 'elementor-pro' ),
+                'type' => Controls_Manager::COLOR,
+                'separator' => 'before',
+                'selectors' => [
+                    '{{WRAPPER}} .elementor-post__card .elementor-post__meta-data' => 'border-top-color: {{VALUE}}',
+                ],
+            ]
+        );
+
         $this->end_controls_section();
     }
 
@@ -528,9 +933,11 @@ class Elementor_Custom_Post_Widget extends Widget_Base {
             'id' => get_post_thumbnail_id(),
         ];
         ?>
-        <div class="elementor-portfolio-item__img elementor-post__thumbnail">
+        <a class="elementor-post__thumbnail__link" href="<?php echo esc_attr( get_permalink() ); ?>">
+        <div class="elementor-post__thumbnail">
             <?php Group_Control_Image_Size::print_attachment_image_html( $settings, 'thumbnail_size' ); ?>
         </div>
+        </a>
         <?php
     }
     function render_excerpt() {
@@ -545,7 +952,7 @@ class Elementor_Custom_Post_Widget extends Widget_Base {
         add_filter( 'excerpt_length', [ $this, 'filter_excerpt_length' ], 20 );
 
         ?>
-        <div class="elementor-post__excerpt">
+        <div class="custom-post__excerpt">
             <?php
             global $post;
             $apply_to_custom_excerpt = $this->get_settings( 'apply_to_custom_excerpt' );
@@ -567,7 +974,7 @@ class Elementor_Custom_Post_Widget extends Widget_Base {
         remove_filter( 'excerpt_more', [ $this, 'filter_excerpt_more' ], 20 );
     }
     function render_read_time(){
-        echo '<p>'.do_shortcode('[read_meter id='.get_the_ID().']') . 'mins read </p>';
+        echo '<div class="meta-read-meter">'.do_shortcode('[read_meter id='.get_the_ID().']') . 'mins read </div>';
     }
     function render_badge() {
         $taxonomy = $this->get_settings( 'badge_taxonomy' );
@@ -584,7 +991,7 @@ class Elementor_Custom_Post_Widget extends Widget_Base {
             $list .= '<span>' . $term->name . '</span>';
         }
         ?>
-        <div class="elementor-post__badge"><?php echo wp_kses_post( $list ); ?></div>
+        <div class="custom-post__badge"><?php echo wp_kses_post( $list ); ?></div>
         <?php
     }
     protected function render_meta_data() {
