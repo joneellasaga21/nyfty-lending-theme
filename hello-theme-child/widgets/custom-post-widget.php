@@ -244,11 +244,112 @@ class Elementor_Custom_Post_Widget extends Widget_Base {
 
         $this->register_design_card_controls();
 
+        $this->register_design_image_controls();
+
         $this->register_design_content_controls();
     }
     /**
      * Style Tab
      */
+    protected function register_design_image_controls() {
+        $this->start_controls_section(
+            'section_design_image',
+            [
+                'label' => esc_html__( 'Image', 'elementor-pro' ),
+                'tab' => Controls_Manager::TAB_STYLE,
+            ]
+        );
+        $this->add_responsive_control(
+            'image_spacing',
+            [
+                'label' => esc_html__( 'Spacing', 'elementor-pro' ),
+                'type' => Controls_Manager::SLIDER,
+                'range' => [
+                    'px' => [
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .elementor-post__text' => 'margin-top: {{SIZE}}{{UNIT}}',
+                ],
+                'default' => [
+                    'size' => 20,
+                ],
+            ]
+        );
+
+        $this->start_controls_tabs( 'thumbnail_effects_tabs' );
+
+        $this->start_controls_tab( 'normal',
+            [
+                'label' => esc_html__( 'Normal', 'elementor-pro' ),
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Css_Filter::get_type(),
+            [
+                'name' => 'thumbnail_filters',
+                'selector' => '{{WRAPPER}} .elementor-post__thumbnail img',
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->start_controls_tab( 'hover',
+            [
+                'label' => esc_html__( 'Hover', 'elementor-pro' ),
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Css_Filter::get_type(),
+            [
+                'name' => 'thumbnail_hover_filters',
+                'selector' => '{{WRAPPER}} .elementor-post:hover .elementor-post__thumbnail img',
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->end_controls_tabs();
+
+        $this->add_responsive_control(
+            'image_width',
+            [
+                'label' => esc_html__( 'Image Width', 'elementor-pro' ),
+                'type' => Controls_Manager::SLIDER,
+                'range' => [
+                    '%' => [
+                        'min' => 10,
+                        'max' => 100,
+                    ],
+                    'px' => [
+                        'min' => 10,
+                        'max' => 600,
+                    ],
+                ],
+                'default' => [
+                    'size' => 100,
+                    'unit' => '%',
+                ],
+                'tablet_default' => [
+                    'size' => '',
+                    'unit' => '%',
+                ],
+                'mobile_default' => [
+                    'size' => 100,
+                    'unit' => '%',
+                ],
+                'size_units' => [ '%', 'px' ],
+                'selectors' => [
+                    '{{WRAPPER}} .elementor-post__thumbnail__link' => 'width: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_section();
+    }
     public function register_design_layout_controls() {
         $this->start_controls_section(
             'section_design_layout',
@@ -725,7 +826,7 @@ class Elementor_Custom_Post_Widget extends Widget_Base {
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .elementor-post__card' => 'border-width: {{SIZE}}{{UNIT}}',
+                    '{{WRAPPER}} .elementor-post__card' => 'border: {{SIZE}}{{UNIT}} solid',
                 ],
             ]
         );
@@ -934,7 +1035,7 @@ class Elementor_Custom_Post_Widget extends Widget_Base {
         ];
         ?>
         <a class="elementor-post__thumbnail__link" href="<?php echo esc_attr( get_permalink() ); ?>">
-        <div class="elementor-post__thumbnail">
+        <div class="elementor-post__thumbnail elementor-fit-height">
             <?php Group_Control_Image_Size::print_attachment_image_html( $settings, 'thumbnail_size' ); ?>
         </div>
         </a>
