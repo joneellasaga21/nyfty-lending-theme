@@ -32,6 +32,9 @@ function hello_elementor_child_scripts_styles() {
 		HELLO_ELEMENTOR_CHILD_VERSION
 	);
 
+    wp_enqueue_script('nyfty-script', get_stylesheet_directory_uri() . '/asset/custom-global.js', array('jquery'),
+        '1.1.0', true);
+
 }
 add_action( 'wp_enqueue_scripts', 'hello_elementor_child_scripts_styles', 20 );
 
