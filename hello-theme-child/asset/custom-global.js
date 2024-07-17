@@ -1,7 +1,7 @@
 jQuery(document).ready(function($){
     $("#form-field-search_programs").on('keyup',function(e){
         var value = $(this).val().toLowerCase();
-        console.log(value);
+        //console.log(value);
         $("#loan-services-grid .elementor-widget-icon-box").filter(function() {
             $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
         });
@@ -31,7 +31,7 @@ jQuery(document).ready(function($){
 
 });
 
-function setArrowPosition(){
+function setArrowPosition(ele){
     jQuery('#svg-arrow').removeClass('hidden');
     const hdesc = document.getElementById('hero-desc');
     const hd_pos = hdesc.getBoundingClientRect();

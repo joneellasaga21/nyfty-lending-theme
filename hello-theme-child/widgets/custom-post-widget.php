@@ -1075,7 +1075,7 @@ class Elementor_Custom_Post_Widget extends Widget_Base {
         remove_filter( 'excerpt_more', [ $this, 'filter_excerpt_more' ], 20 );
     }
     function render_read_time(){
-        echo '<div class="meta-read-meter">'.do_shortcode('[read_meter id='.get_the_ID().']') . 'mins read </div>';
+        echo '<div class="meta-read-meter">'.do_shortcode('[read_meter id='.get_the_ID().']') . 'min read </div>';
     }
     function render_badge() {
         $taxonomy = $this->get_settings( 'badge_taxonomy' );
