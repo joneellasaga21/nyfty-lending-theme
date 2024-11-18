@@ -1,0 +1,198 @@
+/*Helper*/
+.highlight{
+    color: #DD671A;
+}
+.hide-desktop{
+    display: none !important;
+}
+/*button*/
+.elementor-button {
+    transition: all 0.3s ease !important;
+}
+.hover-btn .elementor-button:hover, .gform_button.button:hover {
+    box-shadow: 0px 2px 0px 0px #FDA700 !important;
+}
+.loan-program .elementor-widget-container:before {
+    content: '';
+    position: absolute;
+    width: 23px;
+    height: 25px;
+    z-index: 10;
+    background-image: url(https://nyftylending.com/wp-content/uploads/2024/07/icon-red-arrow.svg);
+    background-repeat: no-repeat;
+    right: 8px;
+    bottom: 12px;
+}
+.loan-program .elementor-widget-container:hover{
+    box-shadow: 7px 7px 0px 0px #00174C;
+}
+
+.h-lending-process:before {
+    content: '';
+    position: absolute;
+    width: 50px;
+    height: 100px;
+    background-image: url(https://nyftylending.com/wp-content/uploads/2024/07/icon-arrow-down-lending-process.svg);
+    background-repeat: no-repeat;
+    z-index: 10;
+    left: -38px;
+    top: 36px;
+}
+
+/*Testimonial*/
+p.date {
+    font-weight: bold;
+    font-size: 22px;
+    color: #faa500;
+}
+.elementor-testimonial-meta {
+    position: absolute;
+    bottom: 20px;
+    width: auto !important;
+}
+
+/*gform*/
+.gfield_validation_message, .gfield_description.instruction.validation_message {
+    display: none;
+}
+.gform_wrapper .ginput_container #input_3_1, .gform_wrapper .ginput_container #input_3_3, .gform_wrapper .ginput_container #input_3_4, .gform_wrapper .ginput_container #input_3_5 {
+    padding-top: 18px;
+    font-size: 18px;
+    padding-left: 25px;
+    padding-bottom: 16px;
+    color: #00174c;
+    font-weight: 500;
+    border-radius: 10px;
+    border: 1px solid #00174c;
+    box-shadow: 0 6px 0;
+}
+
+.gform_button.button {
+    width: auto;
+    height: auto;
+    box-shadow: 0 7px 0 #FDA700;
+    margin-top: 50px;
+    transition: all 0.2s ease-in;
+}
+.gform_button.button:hover{
+    box-shadow: 0px 2px 0px 0px #FDA700 !important;
+}
+.gform_wrapper.gravity-theme .gform_fields{
+    grid-row-gap: 20px !important;
+}
+.gform_footer.top_label{
+    justify-content: center;
+}
+.gfield_validation_message, .gfield_description.instruction.validation_message {
+    display: none;
+}
+
+/* Breadcrumbs */
+.home .rank-math-breadcrumb{
+    display: none;
+}
+.home #main-menu-container {
+    border: 0;
+}
+.rank-math-breadcrumb a, .rank-math-breadcrumb span.separator {
+    color: #DD671A;
+}
+.rank-math-breadcrumb span.last {
+    color: #585858;
+}
+
+/*search form*/
+#search-loan-form .elementor-field-type-submit.e-form__buttons, #search-form-city .elementor-field-type-submit.e-form__buttons {
+    position: absolute;
+    width: 20px;
+    right: -13px;
+    top: -2px;
+}
+input#form-field-search_loan, input#form-field-search_loan_city {
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.13);
+    padding: 12px 18px;
+}
+/*Footer*/
+.footer-text a{
+    color: #FFAA00;
+}
+.footer-text a:hover{
+    color: #DD671A;
+}
+@media (min-width: 767px){
+    #call-text-d{
+        display: none;
+    }
+}
+@media (min-width:768px){
+    .break{
+        display: block;
+    }
+}
+@media (max-width: 1200px){
+    #main-menu {
+        position: absolute;
+        right: 20px;
+    }
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+    .hide-desktop{
+        display: block !important;
+    }
+    .hero-desc .elementor-widget-container {
+        margin-top: 0 !important;
+    }
+    .hero-desc {
+        width: 50%;
+    }
+}
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    .hero-desc {
+        width: 57% !important;
+    }
+}
+@media (max-width: 1200px){
+    #main-menu {
+        position: absolute;
+        right: 20px;
+    }
+}
+@media (max-width: 768px){
+    .hide-mobile{
+        display: none !important;
+    }
+    .hide-desktop{
+        display: block !important;
+    }
+}
+@media (max-width: 767px){
+    .m-relative{
+        position: relative;
+    }
+    .hero-desc {
+        width: 100%;
+    }
+}
+@media (max-width: 501px){
+    .hide-phone{
+        display: none !important;
+    }
+    .h-lending-process:before {
+        left: 75px;
+        top: 90px;
+    }
+    #search-loan-form button.elementor-button.elementor-size-md, #search-form-city button.elementor-button.elementor-size-md {
+        padding: 12px 16px;
+    }
+    .gform_wrapper .ginput_container #input_3_1, .gform_wrapper .ginput_container #input_3_3, .gform_wrapper .ginput_container #input_3_4, .gform_wrapper .ginput_container #input_3_5{
+        padding-left: 20px;
+        font-size: 16px;
+        padding-bottom: 12px;
+        padding-top: 12px;
+    }
+    .gform_button.button {
+        margin-top: 30px;
+    }
+
+}
+

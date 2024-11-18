@@ -13,19 +13,23 @@ jQuery(document).ready(function($){
         $('#loan-services-grid').removeClass('list-view');
     });
 
+    setTimeout(function () {
+        if ($('#svg-arrow').length >= 1) {
+            setArrowPosition();
+            var width = $(window).width();
+            generateSVGArrow(width, false, '#svg-arrow');
+            $('#svg-arrow').removeClass('hidden');
+        }
+        if ($('#svg-arrow-right').length >= 1) {
+            setArrowPosition();
+            var width = $(window).width();
+            generateSVGArrow(width, true, '#svg-arrow-right');
+            $('#svg-arrow-right').removeClass('hidden');
+        }
+    }, 500);
 
-    if ($('#svg-arrow').length >= 1) {
-        setArrowPosition();
-        var width = $(window).width();
-        generateSVGArrow(width, false, '#svg-arrow');
-        $('#svg-arrow').removeClass('hidden');
-    }
-    if ($('#svg-arrow-right').length >= 1) {
-        setArrowPosition();
-        var width = $(window).width();
-        generateSVGArrow(width, true, '#svg-arrow-right');
-        $('#svg-arrow-right').removeClass('hidden');
-    }
+    /*add hover animation gform btn*/
+    $('.gform_button.button').addClass('elementor-animation-grow');
     /*
     * For improvement
     * */
@@ -40,7 +44,7 @@ jQuery(document).ready(function($){
                 width = $(window).width();
                 generateSVGArrow(width, false, '#svg-arrow');
                 $('#svg-arrow').removeClass('hidden');
-            }, 200);
+            }, 500);
         }
         if ($('#svg-arrow-right').length >= 1) {
             setArrowPosition();
@@ -49,10 +53,22 @@ jQuery(document).ready(function($){
                 width = $(window).width();
                 generateSVGArrow(width, true, '#svg-arrow-right');
                 $('#svg-arrow-right').removeClass('hidden');
-            }, 200);
+            }, 500);
         }
     });
 
+    $(window).scroll(function () {
+        const top = $(window).scrollTop();
+        mobileCallUsIcon(top);
+    });
+    function mobileCallUsIcon(top){
+        const ele = $('#m-call-us-right');
+        if(top > 300){
+            ele.removeClass('hide');
+        } else {
+            ele.addClass('hide');
+        }
+    }
 });
 
 function setArrowPosition(){
@@ -60,9 +76,13 @@ function setArrowPosition(){
     const hd_pos = hdesc.getBoundingClientRect();
     const hd_left = hd_pos.left + window.scrollX;
     const hd_top = hd_pos.top + window.scrollY;
-
+    let offset = 10;
+    const loggedin = jQuery('body').hasClass('logged-in');
+    if(loggedin){
+        offset = 10;
+    }
     let hd_height = document.getElementById('hero-desc').offsetHeight;
-    hd_height += hd_top - 10;
+    hd_height += hd_top - offset;
     jQuery('#arrow-container').css({'position': 'absolute', 'top': hd_height +'px'});
 }
 
