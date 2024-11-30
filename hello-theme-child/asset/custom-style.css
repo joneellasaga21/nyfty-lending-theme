@@ -12,7 +12,7 @@
 .hover-btn .elementor-button:hover, .gform_button.button:hover {
     box-shadow: 0px 2px 0px 0px #FDA700 !important;
 }
-.loan-program .elementor-widget-container:before {
+.loan-program.arrow .elementor-widget-container:before {
     content: '';
     position: absolute;
     width: 23px;
