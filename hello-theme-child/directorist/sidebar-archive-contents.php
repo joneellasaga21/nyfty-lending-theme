@@ -29,7 +29,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 				<?php endif; ?>
 
 				<?php if( $listings->header ) : ?>
-				
+
 					<div class="listing-with-sidebar__header">
 						<?php
 							$listings->header_bar_template();
@@ -45,6 +45,16 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 						?>
 					</section>
 				</div>
+
+                <?php if( ! $listings->hide_top_search_bar_on_sidebar_layout() ) : ?>
+
+                    <div class="listing-with-sidebar__searchform">
+                        <?php
+                        $listings->basic_search_form_template();
+                        ?>
+                    </div>
+
+                <?php endif; ?>
 			</div>
 		</div>
 	</div>

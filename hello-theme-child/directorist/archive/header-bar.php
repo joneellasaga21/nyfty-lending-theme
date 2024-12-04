@@ -26,7 +26,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 						if ( $listings->header_title && ! empty( $listings->options['display_listings_count'] ) ) {
 							echo $listings->listings_header_title();
 						}
-						echo '<p>Loan Officers</p>';
+						echo '<h3 class="listing-title">Loan Officers</h3>';
 					?>
 				</div>
 

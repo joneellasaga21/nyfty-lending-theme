@@ -57,13 +57,13 @@ $get_phone =  get_post_meta($list_id, '_phone', true);
 
         <footer class="directorist-listing-single__meta">
             <div class="directorist-listing-single__meta__left">
-                <a href="mailto:<?php echo $get_email; ?>"><img class="icon" src="https://nyftylending.com/wp-content/uploads/2024/11/icon_email_envelope.svg" alt="Email" /></a>
+                <a href="mailto:<?php echo $get_email; ?>"><img class="icon" src="https://nyftylending.com/wp-content/uploads/2024/12/icon_email_2.svg" alt="Email" title="Contact Me" /></a>
             </div>
             <div class="directorist-listing-single__meta__middle">
                 <a href="<?php echo $listings->loop['permalink']; ?>" alt="Apply Now" class="btn apply">Apply Now</a>
             </div>
             <div class="directorist-listing-single__meta__right">
-                <a href="tel:<?php echo $get_phone; ?>"><img class="icon" src="https://nyftylending.com/wp-content/uploads/2024/11/icon_mobile.svg" alt="Phone" /></a>
+                <a href="tel:<?php echo $get_phone; ?>"><img class="icon" src="https://nyftylending.com/wp-content/uploads/2024/12/icon_mobile_2.svg" alt="Phone" title="Call Me" /></a>
             </div>
 
         </footer>
