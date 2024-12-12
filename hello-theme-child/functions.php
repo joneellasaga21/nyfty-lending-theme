@@ -57,3 +57,56 @@ function register_custom_post_widget( $widgets_manager ) {
 
 }
 add_action( 'elementor/widgets/register', 'register_custom_post_widget' );
+
+function custom_comment( $comment, $args, $depth ) {
+
+    if ( 'div' === $args['style'] ) {
+        $tag       = 'div';
+        $add_below = 'comment';
+    }
+    else {
+        $tag       = 'li';
+        $add_below = 'div-comment';
+    }
+
+    $classes = ' ' . comment_class( empty( $args['has_children'] ) ? '' : 'parent', null, null, false );
+    ?>
+
+    <<?= $tag . $classes; ?> id="comment-<?php comment_ID() ?>">
+
+    <?php if ( 'div' != $args['style'] ) { ?>
+        <div id="div-comment-<?php comment_ID() ?>" class="comment-body"><?php
+    } ?>
+
+    <?php if ( $comment->comment_approved == '0' ) { ?>
+        <em class="comment-awaiting-moderation">
+            <?php _e( 'Your comment is awaiting moderation.' ); ?>
+        </em><br/>
+    <?php } ?>
+
+    <div class="comment-meta commentmetadata">
+        <?php
+        printf(
+            __( '%1$s' ),
+            get_comment_date('F Y')
+        ); ?>
+    </div>
+
+    <?php comment_text(); ?>
+
+    <div class="comment-author vcard">
+        <?php
+        if ( $args['avatar_size'] != 0 ) {
+            echo get_avatar( $comment, $args['avatar_size'] );
+        }
+        printf(
+            __( '<p class="author">-%s</p>' ),
+            get_comment_author()
+        );
+        ?>
+    </div>
+
+    <?php if ( 'div' != $args['style'] ) { ?>
+        </div>
+    <?php }
+}

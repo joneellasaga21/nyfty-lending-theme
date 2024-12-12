@@ -15,7 +15,7 @@ if ( ! empty( $data['images'] )  ):
             continue;
         }
         printf(
-            '<div class="swiper-slide"><img src="%1$s" alt="%2$s"></div>',
+            '<div class="custom-single-image flex-col-3"><img src="%1$s" alt="%2$s" title="%2$s"></div>',
             esc_url( $image['src'] ),
             esc_attr( $image['alt'] )
         );

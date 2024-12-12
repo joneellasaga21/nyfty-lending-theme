@@ -13,6 +13,7 @@ $img_url = get_post_meta( $list_id, '_custom-file', true );
 $profile_thumb = str_replace( '|', '', $img_url );
 $get_email =  get_post_meta($list_id, '_email', true);
 $get_phone =  get_post_meta($list_id, '_phone', true);
+$get_title = $listings->loop['title'];
 ?>
 
 <article class="directorist-listing-single directorist-listing-single--bg directorist-listing-card directorist-listing-has-thumb <?php echo esc_attr( $listings->loop_wrapper_class() ); ?>" data-pid="<?php echo $list_id; ?>">
@@ -22,7 +23,7 @@ $get_phone =  get_post_meta($list_id, '_phone', true);
         <div class="directorist-thumnail-card directorist-card-cover">
             <a href="<?php echo $listings->loop['permalink'];?>">
                 <figure>
-                    <img src="<?php echo $profile_thumb; ?>" alt="" title=""/>
+                    <?php echo "<img src='$profile_thumb' alt='$get_title' title='$get_title'/>"; ?>
                 </figure>
             </a>
         </div>
@@ -57,13 +58,13 @@ $get_phone =  get_post_meta($list_id, '_phone', true);
 
         <footer class="directorist-listing-single__meta">
             <div class="directorist-listing-single__meta__left">
-                <a href="mailto:<?php echo $get_email; ?>"><img class="icon" src="https://nyftylending.com/wp-content/uploads/2024/12/icon_email_2.svg" alt="Email" title="Contact Me" /></a>
+                <a href="mailto:<?php echo $get_email; ?>" alt="Contact Me"><i class="directorist-icon-mask" aria-hidden="true" style="--directorist-icon: url(https://nyftylending.com/wp-content/uploads/2024/12/icon_email_2.svg)"></i></a>
             </div>
             <div class="directorist-listing-single__meta__middle">
                 <a href="<?php echo $listings->loop['permalink']; ?>" alt="Apply Now" class="btn apply">Apply Now</a>
             </div>
             <div class="directorist-listing-single__meta__right">
-                <a href="tel:<?php echo $get_phone; ?>"><img class="icon" src="https://nyftylending.com/wp-content/uploads/2024/12/icon_mobile_2.svg" alt="Phone" title="Call Me" /></a>
+                <a href="tel:<?php echo $get_phone; ?>" alt="Call Me"><i class="directorist-icon-mask" aria-hidden="true" style="--directorist-icon: url(https://nyftylending.com/wp-content/uploads/2024/12/icon_mobile_2.svg)"></i></a>
             </div>
 
         </footer>
