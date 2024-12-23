@@ -16,6 +16,7 @@ $get_phone =  get_post_meta($list_id, '_phone', true);
 $get_title = $listings->loop['title'];
 $get_permalink = $listings->loop['permalink'];
 $get_position = get_post_meta( $list_id, '_custom-text-2', true );
+$get_popup_form = get_post_meta($list_id, '_custom-text-3', true);
 ?>
 
 <article class="directorist-listing-single directorist-listing-single--bg directorist-listing-list directorist-listing-has-thumb <?php echo esc_attr( $listings->loop_wrapper_class() ); ?>">
@@ -66,7 +67,7 @@ $get_position = get_post_meta( $list_id, '_custom-text-2', true );
 
 		<footer class="directorist-listing-single__meta">
             <div class="directorist-listing-single__meta__left">
-                <a href="mailto:<?php echo $get_email; ?>" alt="Contact Me"><i class="directorist-icon-mask" aria-hidden="true" style="--directorist-icon: url(https://nyftylending.com/wp-content/uploads/2024/12/icon_email_2.svg)"></i> <span class="text">Contact Me</span></a>
+                <a href="<?php echo $get_popup_form; ?>" alt="Contact Me"><i class="directorist-icon-mask" aria-hidden="true" style="--directorist-icon: url(https://nyftylending.com/wp-content/uploads/2024/12/icon_email_2.svg)"></i> <span class="text">Contact Me</span></a>
             </div>
             <div class="directorist-listing-single__meta__middle">
                 <a href="<?php echo $listings->loop['permalink']; ?>" alt="Apply Now" class="btn apply"><i class="directorist-icon-mask" aria-hidden="true" style="--directorist-icon: url(https://nyftylending.com/wp-content/uploads/2024/12/icon_user.svg)"></i> Apply Now</a>
@@ -80,7 +81,7 @@ $get_position = get_post_meta( $list_id, '_custom-text-2', true );
 	<footer class="directorist-listing-single__mobile-view-meta">
 		<div class="directorist-listing-single__meta">
             <div class="directorist-listing-single__meta__left">
-                <a href="mailto:<?php echo $get_email; ?>" alt="Contact Me"><i class="directorist-icon-mask" aria-hidden="true" style="--directorist-icon: url(https://nyftylending.com/wp-content/uploads/2024/12/icon_email_2.svg)"></i> <span class="text">Contact Me</span></a>
+                <a href="<?php echo $get_popup_form; ?>" alt="Contact Me"><i class="directorist-icon-mask" aria-hidden="true" style="--directorist-icon: url(https://nyftylending.com/wp-content/uploads/2024/12/icon_email_2.svg)"></i> <span class="text">Contact Me</span></a>
             </div>
             <div class="directorist-listing-single__meta__middle">
                 <a href="<?php echo $listings->loop['permalink']; ?>" alt="Apply Now" class="btn apply"><i class="directorist-icon-mask" aria-hidden="true" style="--directorist-icon: url(https://nyftylending.com/wp-content/uploads/2024/12/icon_user.svg)"></i> Apply Now</a>

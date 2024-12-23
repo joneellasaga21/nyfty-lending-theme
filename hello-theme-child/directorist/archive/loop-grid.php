@@ -14,6 +14,7 @@ $profile_thumb = str_replace( '|', '', $img_url );
 $get_email =  get_post_meta($list_id, '_email', true);
 $get_phone =  get_post_meta($list_id, '_phone', true);
 $get_title = $listings->loop['title'];
+$get_popup_form = get_post_meta($list_id, '_custom-text-3', true);
 ?>
 
 <article class="directorist-listing-single directorist-listing-single--bg directorist-listing-card directorist-listing-has-thumb <?php echo esc_attr( $listings->loop_wrapper_class() ); ?>" data-pid="<?php echo $list_id; ?>">
@@ -58,7 +59,7 @@ $get_title = $listings->loop['title'];
 
         <footer class="directorist-listing-single__meta">
             <div class="directorist-listing-single__meta__left">
-                <a href="mailto:<?php echo $get_email; ?>" alt="Contact Me"><i class="directorist-icon-mask" aria-hidden="true" style="--directorist-icon: url(https://nyftylending.com/wp-content/uploads/2024/12/icon_email_2.svg)"></i></a>
+                <a href="<?php echo $get_popup_form; ?>" alt="Contact Me"><i class="directorist-icon-mask" aria-hidden="true" style="--directorist-icon: url(https://nyftylending.com/wp-content/uploads/2024/12/icon_email_2.svg)"></i></a>
             </div>
             <div class="directorist-listing-single__meta__middle">
                 <a href="<?php echo $listings->loop['permalink']; ?>" alt="Apply Now" class="btn apply">Apply Now</a>

@@ -20,7 +20,7 @@ $get_email =  get_post_meta($list_id, '_email', true);
 
 	<div class="directorist-card__body">
 
-		<?php echo do_shortcode('[gravityform id="9" title="false" ajax="true" field_values="officer_email='.$get_email.'"]') ?>
+		<?php echo do_shortcode('[gravityform id="9" title="true" ajax="true" field_values="officer_email='.$get_email.'"]') ?>
 
 	</div>
 
