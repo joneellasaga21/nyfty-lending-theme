@@ -52,6 +52,19 @@ p.date {
 }
 
 /*gform*/
+.ginput_container{
+    position: relative;
+}
+#gform_3 .gfield_contains_required .ginput_container:before{
+    content: '*';
+    color: #F28500;
+    z-index: 10;
+    position: absolute;
+    right: 8px;
+    top: 3px;
+    font-size: 16px;
+    font-weight: bold;
+}
 .gfield_validation_message, .gfield_description.instruction.validation_message {
     display: none;
 }
@@ -86,7 +99,40 @@ p.date {
 .gfield_validation_message, .gfield_description.instruction.validation_message {
     display: none;
 }
-
+/*Popup form*/
+.dialog-widget input::-ms-input-placeholder, .dialog-widget textarea::-ms-input-placeholder{ /* Edge 12-18 */
+    color: #00174C !important;
+}
+.dialog-widget input::placeholder,.dialog-widget textarea::placeholder{ /* Edge 12-18 */
+    color: #00174C !important;
+}
+.dialog-widget .gfield_contains_required .ginput_container:before{
+    content: '*';
+    color: #F28500;
+    z-index: 10;
+    position: absolute;
+    right: 8px;
+    top: 3px;
+    font-size: 16px;
+    font-weight: bold;
+}
+.dialog-widget input,.dialog-widget textarea {
+    border-radius: 5px;
+    border-color: #D4D4D4;
+    background-color: #FDFDFD;
+    font-size: 15px;
+    font-weight: 600;
+    color: #00174C;
+}
+.dialog-widget textarea {
+    height: 98px !important;
+}
+.dialog-widget .gform_wrapper .gform_footer.top_label input {
+    margin-top: 0;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+}
 /* Breadcrumbs */
 .home .rank-math-breadcrumb{
     display: none;
@@ -112,7 +158,47 @@ input#form-field-search_loan, input#form-field-search_loan_city {
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.13);
     padding: 12px 18px;
 }
+.elementor-button-text.elementor-form-spinner{
+    display: none;
+}
+.elementor-field-group-search_loan, .elementor-field-group-search_loan_city{
+    position: relative;
+    display: inline-block;
+}
+.autocomplete-items {
+    position: absolute;
+    border: 1px solid #d4d4d4;
+    border-bottom: none;
+    border-top: none;
+    z-index: 99;
+    top: 92%;
+    left: 5px;
+    right: 0;
+    width: 97%;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.13);
+}
+
+.autocomplete-items div {
+    padding: 10px;
+    cursor: pointer;
+    background-color: #fff;
+    border-bottom: 1px solid #d4d4d4;
+}
+
+/*when hovering an item:*/
+.autocomplete-items div:hover {
+    background-color: #e9e9e9;
+}
+
+/*when navigating through the items using the arrow keys:*/
+.autocomplete-active {
+    background-color: DodgerBlue !important;
+    color: #ffffff;
+}
 /*Footer*/
+.footer-text {
+    overflow: hidden;
+}
 .footer-text a{
     color: #FFAA00;
 }

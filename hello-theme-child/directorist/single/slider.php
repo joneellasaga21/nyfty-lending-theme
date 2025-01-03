@@ -15,7 +15,7 @@ $get_nmls = get_post_meta( $list_id, '_custom-text', true );
 
 echo "<div class='custom-listing-header'>";
 if ( ! empty( $data['images'] )  ) {
-    $src = $data['images'][0]['src'];
+    $src = $data['images'][0]['src'] . '.webp';
     $alt = $data['images'][0]['alt'];
     if(!empty($src)){
       echo "<div class='custom-single-image' style='background-image: url($src)'>";

@@ -69,6 +69,113 @@ jQuery(document).ready(function($){
             ele.addClass('hide');
         }
     }
+
+    $('#search-loan-form').find('form').attr('autocomplete', 'off');
+    $('#search-form-city').find('form').attr('autocomplete', 'off');
+
+    $('#search_loan_officer').on('submit', function(e){
+        var officer = $('#form-field-search_loan').val();
+        e.preventDefault();
+        e.stopPropagation();
+        window.location.href = "https://nyftylending.com/our-loan-officers/?q="+officer+"&r=1";
+    });
+    $('#search_loan_address').on('submit', function(e){
+        var address = $('#form-field-search_loan_city').val();
+        e.preventDefault();
+        e.stopPropagation();
+        window.location.href = "https://nyftylending.com/our-loan-officers/?address="+address+"&r=1";
+    });
+
+    function autocomplete(inp, arr) {
+        var currentFocus;
+
+        /*execute a function when someone writes in the text field:*/
+        inp.addEventListener("input", function(e) {
+            displayList(this.value);
+        });
+        inp.addEventListener("focusin", function(e){
+            // Trigger list display even if input is empty
+            displayList(this.value || "");
+        });
+
+        function displayList(val){
+            var a, b, i;
+            /*close any already open lists of autocompleted values*/
+            closeAllLists();
+            //if (!val) { return false;}
+            currentFocus = -1;
+            /*create a DIV element that will contain the items (values):*/
+            a = document.createElement("DIV");
+            a.setAttribute("id", inp.id + "autocomplete-list");
+            a.setAttribute("class", "autocomplete-items");
+            /*append the DIV element as a child of the autocomplete container:*/
+            inp.parentNode.appendChild(a);
+            /*for each item in the array...*/
+            for (i = 0; i < arr.length; i++) {
+                /*check if the item starts with the same letters as the text field value:*/
+                if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+                    /*create a DIV element for each matching element:*/
+                    b = document.createElement("DIV");
+                    /*make the matching letters bold:*/
+                    b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
+                    b.innerHTML += arr[i].substr(val.length);
+                    /*insert a input field that will hold the current array item's value:*/
+                    b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+                    /*execute a function when someone clicks on the item value (DIV element):*/
+                    b.addEventListener("click", function(e) {
+                        /*insert the value for the autocomplete text field:*/
+                        inp.value = this.getElementsByTagName("input")[0].value;
+                        /*close the list of autocompleted values,
+                        (or any other open lists of autocompleted values:*/
+                        closeAllLists();
+                    });
+                    a.appendChild(b);
+                }
+            }
+        }
+
+        function addActive(x) {
+            /*a function to classify an item as "active":*/
+            if (!x) return false;
+            /*start by removing the "active" class on all items:*/
+            removeActive(x);
+            if (currentFocus >= x.length) currentFocus = 0;
+            if (currentFocus < 0) currentFocus = (x.length - 1);
+            /*add class "autocomplete-active":*/
+            x[currentFocus].classList.add("autocomplete-active");
+        }
+
+        function removeActive(x) {
+            /*a function to remove the "active" class from all autocomplete items:*/
+            for (var i = 0; i < x.length; i++) {
+                x[i].classList.remove("autocomplete-active");
+            }
+        }
+
+        function closeAllLists(elmnt) {
+            const items = document.getElementsByClassName("autocomplete-items");
+            for (let i = 0; i < items.length; i++) {
+                if (elmnt !== items[i] && elmnt !== inp) {
+                    items[i].parentNode.removeChild(items[i]);
+                }
+            }
+        }
+
+        /*execute a function when someone clicks in the document:*/
+        document.addEventListener("click", function (e) {
+            closeAllLists(e.target);
+            console.log(e.target.matches);
+        });
+    }
+
+
+    /*An array containing all the country names in the world:*/
+    var officers = ["Adrian Watson", "Bryan Wilson", "KT Shelton", "Mark Caldwell", "Renny Mitchell"];
+    var addresses = ["Glendale", "AZ", "85308"];
+
+    /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
+    autocomplete(document.getElementById("form-field-search_loan"), officers);
+
 });
 
 function setArrowPosition(){

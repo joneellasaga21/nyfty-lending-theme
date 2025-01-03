@@ -1,0 +1,28 @@
+<svg
+        width="50"
+        height="50"
+        viewBox="0 0 512 512"
+        xmlns="http://www.w3.org/2000/svg"
+>
+    <!-- Circular Path -->
+    <circle
+            cx="256"
+            cy="256"
+            r="200"
+            fill="none"
+            stroke="#CD0F00"
+            stroke-width="20"
+            stroke-linecap="round"
+            stroke-dasharray="30"
+            stroke-dashoffset="0"
+            style="animation: run-color 2s linear infinite;"
+    ></circle>
+
+    <style>
+        @keyframes run-color {
+        to {
+        stroke-dashoffset: -828;
+        }
+        }
+    </style>
+</svg>
