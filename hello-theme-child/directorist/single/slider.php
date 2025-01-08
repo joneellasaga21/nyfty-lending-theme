@@ -13,6 +13,8 @@ $get_phone =  get_post_meta($list_id, '_phone', true);
 $get_position = get_post_meta($list_id, '_custom-text-2', true);
 $get_nmls = get_post_meta( $list_id, '_custom-text', true );
 
+$sonar_email = urlencode($get_email);
+
 echo "<div class='custom-listing-header'>";
 if ( ! empty( $data['images'] )  ) {
     $src = $data['images'][0]['src'] . '.webp';
@@ -32,12 +34,12 @@ if ( $list_id ) {
         <span class="custom-icon-list email"><a href="mailto:<?php echo $get_email; ?>" alt="Contact Me"><i class="directorist-icon-mask" aria-hidden="true" style="--directorist-icon: url(https://nyftylending.com/wp-content/uploads/2024/12/icon_mail_single.svg)"></i> <span class="text"><?php echo $get_email; ?></span></a></span>
         <div class="custom-button-wrap">
             <div class="custom-button-inner">
-                <a href="mailto:<?php echo $get_email; ?>" class="elementor-button elementor-button-link elementor-size-sm">
+                <a href="#contact-me" class="elementor-button elementor-button-link elementor-size-sm">
                     Contact Me
                 </a>
             </div>
             <div class="custom-button-inner">
-                <a href="#start-application" class="elementor-button elementor-button-link elementor-size-sm">
+                <a href="<?php echo 'https://nyftylending.pos.yoursonar.com/?originator=' . $sonar_email ?>" target="_blank" class="elementor-button elementor-button-link elementor-size-sm">
                     Apply Now
                 </a>
             </div>

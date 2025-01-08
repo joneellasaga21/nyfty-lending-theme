@@ -5,6 +5,13 @@
 .hide-desktop{
     display: none !important;
 }
+.skip-link.screen-reader-text:focus {
+    left: 0;
+    top: 0;
+    padding: 3px;
+    background: #ffc;
+    border:1px solid #990000;
+}
 /*button*/
 .elementor-button {
     transition: all 0.3s ease !important;
@@ -146,6 +153,13 @@ p.date {
 .rank-math-breadcrumb span.last {
     color: #585858;
 }
+/*Custom BreadCrumb*/
+.at_biz_dir-template-default #custom-breadcrumb{
+    margin-top: -37px;
+}
+a.custom-nav, .separator {
+    color: #DD671A;
+}
 
 /*search form*/
 #search-loan-form .elementor-field-type-submit.e-form__buttons, #search-form-city .elementor-field-type-submit.e-form__buttons {
@@ -205,6 +219,7 @@ input#form-field-search_loan, input#form-field-search_loan_city {
 .footer-text a:hover{
     color: #DD671A;
 }
+
 @media (min-width: 767px){
     #call-text-d{
         display: none;
@@ -257,6 +272,10 @@ input#form-field-search_loan, input#form-field-search_loan_city {
     }
     .hero-desc {
         width: 100%;
+    }
+    .h-lending-process:before {
+        left: 155px;
+        top: 50px;
     }
 }
 @media (max-width: 501px){

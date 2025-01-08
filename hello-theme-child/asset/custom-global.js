@@ -2,31 +2,44 @@ jQuery(document).ready(function($){
     $("#form-field-search_programs").on('keyup',function(e){
         var value = $(this).val().toLowerCase();
         //console.log(value);
-        $("#loan-services-grid .elementor-widget-icon-box").filter(function() {
-            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        var results = $("#loan-services-grid .elementor-widget-icon-box").filter(function() {
+            return $(this).toggle($(this).find('.elementor-icon-box-title').text().toLowerCase().indexOf(value) > -1)
         });
+        var resultCount = results.filter(':visible').length;
+        if(resultCount <= 0){
+            $('#not-found').show();
+        } else{
+            $('#not-found').hide();
+        }
     });
+
     $('#btn_grid_view').on('click', function(){
         $('#loan-services-grid').addClass('list-view');
+        $(this).addClass('active');
+        $('#btn_card_view').removeClass('active');
+        $('.btn_view').removeClass('active');
     });
     $('#btn_card_view').on('click', function(){
         $('#loan-services-grid').removeClass('list-view');
+        $(this).addClass('active');
+        $('#btn_grid_view').removeClass('active');
+        $('.btn_view').removeClass('active');
     });
 
     setTimeout(function () {
         if ($('#svg-arrow').length >= 1) {
             setArrowPosition();
             var width = $(window).width();
-            generateSVGArrow(width, false, '#svg-arrow');
+            generateSVGArrow(width, false, '#svg-arrow', 500, 200);
             $('#svg-arrow').removeClass('hidden');
         }
         if ($('#svg-arrow-right').length >= 1) {
             setArrowPosition();
             var width = $(window).width();
-            generateSVGArrow(width, true, '#svg-arrow-right');
+            generateSVGArrow(width, true, '#svg-arrow-right', 500, 200);
             $('#svg-arrow-right').removeClass('hidden');
         }
-    }, 500);
+    }, 200);
 
     /*add hover animation gform btn*/
     $('.gform_button.button').addClass('elementor-animation-grow');
@@ -42,7 +55,7 @@ jQuery(document).ready(function($){
             setTimeout(function () {
                 $('#svg-arrow svg').remove();
                 width = $(window).width();
-                generateSVGArrow(width, false, '#svg-arrow');
+                generateSVGArrow(width, false, '#svg-arrow', 1, 1);
                 $('#svg-arrow').removeClass('hidden');
             }, 500);
         }
@@ -51,7 +64,7 @@ jQuery(document).ready(function($){
             setTimeout(function () {
                 $('#svg-arrow-right svg').remove();
                 width = $(window).width();
-                generateSVGArrow(width, true, '#svg-arrow-right');
+                generateSVGArrow(width, true, '#svg-arrow-right', 1, 1);
                 $('#svg-arrow-right').removeClass('hidden');
             }, 500);
         }
@@ -174,8 +187,10 @@ jQuery(document).ready(function($){
     var addresses = ["Glendale", "AZ", "85308"];
 
     /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
-    autocomplete(document.getElementById("form-field-search_loan"), officers);
-
+    var search_loan_officer = $("#search_loan_officer").find('#form-field-search_loan').length;
+    if(search_loan_officer == 1){
+        autocomplete(document.getElementById("form-field-search_loan"), officers);
+    }
 });
 
 function setArrowPosition(){
@@ -193,7 +208,7 @@ function setArrowPosition(){
     jQuery('#arrow-container').css({'position': 'absolute', 'top': hd_height +'px'});
 }
 
-function generateSVGArrow(width, right, ele){
+function generateSVGArrow(width, right, ele, lineDuration, arrowDuration){
 
     let arrow_path_line = '';
     let arrow_path = '';
@@ -220,19 +235,32 @@ function generateSVGArrow(width, right, ele){
     // Create a path
     const path = draw.path(arrow_path_line).fill('none').stroke({ width: 5, color: '#CD0F00',  linecap: 'round', linejoin: 'round' });
 
-    // Get the length of the path
-    const length = path.length();
+    if(width >= 821) {
+        // Get the length of the path
+        const length = path.length();
 
-    // Set up the stroke dash array and offset to create the drawing effect
-    path.stroke({ dasharray: length, dashoffset: length });
+        // Set up the stroke dash array and offset to create the drawing effect
+        path.stroke({dasharray: length, dashoffset: length});
 
-    // Animate the dash offset to zero, making it look like the path is being drawn
-    //after run second path pointed arrow
-    path.animate(500, '<>').stroke({ dashoffset: 0 }).after(function(){
-        const arrow = draw.path(arrow_path).fill('none').stroke({ width: 5, color: '#CD0F00',  linecap: 'round', linejoin: 'round' });
-        const arrow_length = arrow.length();
-        arrow.stroke({ dasharray: arrow_length, dashoffset: arrow_length });
-        arrow.animate({duration: 200}).stroke({ dashoffset: 0 });
-    });
-
+        // Animate the dash offset to zero, making it look like the path is being drawn
+        //after run second path pointed arrow
+        path.animate(lineDuration, '<>').stroke({dashoffset: 0}).after(function () {
+            const arrow = draw.path(arrow_path).fill('none').stroke({
+                width: 5,
+                color: '#CD0F00',
+                linecap: 'round',
+                linejoin: 'round'
+            });
+            const arrow_length = arrow.length();
+            arrow.stroke({dasharray: arrow_length, dashoffset: arrow_length});
+            arrow.animate({duration: arrowDuration}).stroke({dashoffset: 0});
+        });
+    } else{
+        draw.path(arrow_path).fill('none').stroke({
+            width: 5,
+            color: '#CD0F00',
+            linecap: 'round',
+            linejoin: 'round'
+        });
+    }
 }
