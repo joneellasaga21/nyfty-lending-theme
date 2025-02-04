@@ -30,16 +30,16 @@ jQuery(document).ready(function($){
         if ($('#svg-arrow').length >= 1) {
             setArrowPosition();
             var width = $(window).width();
-            generateSVGArrow(width, false, '#svg-arrow', 500, 200);
+            generateSVGArrow(width, false, '#svg-arrow', 1, 1);
             $('#svg-arrow').removeClass('hidden');
         }
         if ($('#svg-arrow-right').length >= 1) {
             setArrowPosition();
             var width = $(window).width();
-            generateSVGArrow(width, true, '#svg-arrow-right', 500, 200);
+            generateSVGArrow(width, true, '#svg-arrow-right', 1, 1);
             $('#svg-arrow-right').removeClass('hidden');
         }
-    }, 200);
+    }, 100);
 
     /*add hover animation gform btn*/
     $('.gform_button.button').addClass('elementor-animation-grow');
@@ -57,7 +57,7 @@ jQuery(document).ready(function($){
                 width = $(window).width();
                 generateSVGArrow(width, false, '#svg-arrow', 1, 1);
                 $('#svg-arrow').removeClass('hidden');
-            }, 500);
+            }, 100);
         }
         if ($('#svg-arrow-right').length >= 1) {
             setArrowPosition();
@@ -66,7 +66,7 @@ jQuery(document).ready(function($){
                 width = $(window).width();
                 generateSVGArrow(width, true, '#svg-arrow-right', 1, 1);
                 $('#svg-arrow-right').removeClass('hidden');
-            }, 500);
+            }, 100);
         }
     });
 
@@ -177,13 +177,13 @@ jQuery(document).ready(function($){
         /*execute a function when someone clicks in the document:*/
         document.addEventListener("click", function (e) {
             closeAllLists(e.target);
-            console.log(e.target.matches);
+            //console.log(e.target.matches);
         });
     }
 
 
     /*An array containing all the country names in the world:*/
-    var officers = ["Adrian Watson", "Bryan Wilson", "KT Shelton", "Mark Caldwell", "Renny Mitchell"];
+    var officers = ["Adrian Watson", "Brian Olivas", "Bryan Wilson", "Donte Jackson", "KT Shelton", "Mark Caldwell", "Melisa Olson", "Renny Mitchell", "Sheila L. Guayante"];
     var addresses = ["Glendale", "AZ", "85308"];
 
     /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/

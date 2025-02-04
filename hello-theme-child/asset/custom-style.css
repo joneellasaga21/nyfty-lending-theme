@@ -1,9 +1,18 @@
+#main-menu .e-n-menu-wrapper {
+    margin-top: 10px;
+}
 /*Helper*/
 .highlight{
     color: #DD671A;
 }
+.hidden{
+    opacity: 0;
+}
 .hide-desktop{
     display: none !important;
+}
+.tablet{
+    display: none;
 }
 .skip-link.screen-reader-text:focus {
     left: 0;
@@ -17,7 +26,8 @@
     transition: all 0.3s ease !important;
 }
 .hover-btn .elementor-button:hover, .gform_button.button:hover {
-    box-shadow: 0px 2px 0px 0px #FDA700 !important;
+    box-shadow: 0px 1px 1px 1px #FDA700, 0px 1px 1px 0px #9f6900 !important;
+    transform: scale(0.95);
 }
 .loan-program.arrow .elementor-widget-container:before {
     content: '';
@@ -229,6 +239,9 @@ input#form-field-search_loan, input#form-field-search_loan_city {
     .break{
         display: block;
     }
+    #btn-call-icon{
+        display: none;
+    }
 }
 @media (max-width: 1200px){
     #main-menu {
@@ -256,6 +269,14 @@ input#form-field-search_loan, input#form-field-search_loan_city {
     #main-menu {
         position: absolute;
         right: 20px;
+    }
+    #e-n-menu-content-9481{
+        display: flex !important;
+    }
+}
+@media (max-width: 1024px){
+    .tablet{
+        display: block;
     }
 }
 @media (max-width: 768px){

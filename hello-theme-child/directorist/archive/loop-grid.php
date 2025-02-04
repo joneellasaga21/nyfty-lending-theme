@@ -64,7 +64,7 @@ $sonar_email = urlencode($get_email);
                 <a href="<?php echo $get_popup_form; ?>" class="contact-me" data-email="<?php echo $get_email; ?>" data-img="<?php echo $get_profile_img; ?>" alt="Contact Me"><i class="directorist-icon-mask" aria-hidden="true" style="--directorist-icon: url(https://nyftylending.com/wp-content/uploads/2024/12/icon_email_2.svg)"></i></a>
             </div>
             <div class="directorist-listing-single__meta__middle">
-                <a href="<?php echo 'https://nyftylending.pos.yoursonar.com/?originator=' . $sonar_email ?>" target="_blank" alt="Apply Now" class="btn apply">Apply Now</a>
+                <a href="<?php echo $listings->loop['permalink']; ?>" alt="See More" class="btn apply">See More</a>
             </div>
             <div class="directorist-listing-single__meta__right">
                 <a href="tel:<?php echo $get_phone; ?>" alt="Call Me"><i class="directorist-icon-mask" aria-hidden="true" style="--directorist-icon: url(https://nyftylending.com/wp-content/uploads/2024/12/icon_mobile_2.svg)"></i></a>

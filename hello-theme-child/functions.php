@@ -33,8 +33,8 @@ function hello_elementor_child_scripts_styles() {
 	);
 
     wp_enqueue_script('nyfty-script', get_stylesheet_directory_uri() . '/asset/custom-global.js', array('jquery'),
-        '1.6.5', true);
-    wp_enqueue_style('custom-global-style', get_stylesheet_directory_uri(). '/asset/custom-style.css', array(), '1.0.6');
+        '1.6.7', true);
+    wp_enqueue_style('custom-global-style', get_stylesheet_directory_uri(). '/asset/custom-style.css', array(), '1.1.2');
 
 }
 add_action( 'wp_enqueue_scripts', 'hello_elementor_child_scripts_styles', 20 );
@@ -120,7 +120,7 @@ function custom_officer_tab_navigation($atts){
                 <ul>
                     <li><a href="https://nyftylending.com/about-us/">About NYFTY Lending</a></li>
                     <li><a href="">Licensing</a></li>
-                    <li><a href="">Privacy Policy</a></li>
+                    <li><a href="https://nyftylending.com/privacy-policy-us/">Privacy Policy</a></li>
                 </ul>
             </div>
         </div>
