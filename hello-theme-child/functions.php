@@ -32,13 +32,28 @@ function hello_elementor_child_scripts_styles() {
 		HELLO_ELEMENTOR_CHILD_VERSION
 	);
 
+    $db_officers = get_directory_listing_names();
+
     wp_enqueue_script('nyfty-script', get_stylesheet_directory_uri() . '/asset/custom-global.js', array('jquery'),
-        '1.6.7', true);
-    wp_enqueue_style('custom-global-style', get_stylesheet_directory_uri(). '/asset/custom-style.css', array(), '1.1.2');
+        '1.7.6', true);
+
+    wp_add_inline_script( 'nyfty-script', 'const NYFTYDB = ' . json_encode( array(
+            'officers' => $db_officers,
+        ) ), 'before' );
+
+    wp_enqueue_style('custom-global-style', get_stylesheet_directory_uri(). '/asset/custom-style.css', array(), '1.1.3');
 
 }
 add_action( 'wp_enqueue_scripts', 'hello_elementor_child_scripts_styles', 20 );
 
+function get_directory_listing_names(){
+    $directory_listing = get_posts(array('post_type' => 'at_biz_dir', 'post_status' => 'publish', 'orderby' => 'title', 'order' => 'ASC', 'numberposts' => -1));
+    $data = array();
+    foreach($directory_listing as $item){
+        $data[] = $item->post_title;
+    }
+    return $data;
+}
 
 /**
  * Register List Widget.

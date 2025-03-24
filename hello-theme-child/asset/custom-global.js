@@ -90,13 +90,19 @@ jQuery(document).ready(function($){
         var officer = $('#form-field-search_loan').val();
         e.preventDefault();
         e.stopPropagation();
-        window.location.href = "https://nyftylending.com/our-loan-officers/?q="+officer+"&r=1";
+        window.location.href = "https://nyftylending.com/our-loan-officers/?r=1&q="+officer;
     });
     $('#search_loan_address').on('submit', function(e){
         var address = $('#form-field-search_loan_city').val();
         e.preventDefault();
         e.stopPropagation();
-        window.location.href = "https://nyftylending.com/our-loan-officers/?address="+address+"&r=1";
+        window.location.href = "https://nyftylending.com/our-loan-officers/?r=1&address="+address;
+    });
+    $('#find-loan-officer').on('click', function (e) {
+        var officer = $('#form-field-search_loan').val();
+        e.preventDefault();
+        e.stopPropagation();
+        window.location.href = "https://nyftylending.com/our-loan-officers/?r=1&q="+officer;
     });
 
     function autocomplete(inp, arr) {
@@ -183,8 +189,9 @@ jQuery(document).ready(function($){
 
 
     /*An array containing all the country names in the world:*/
-    var officers = ["Adrian Watson", "Brian Olivas", "Bryan Wilson", "Donte Jackson", "KT Shelton", "Mark Caldwell", "Melisa Olson", "Renny Mitchell", "Sheila L. Guayante"];
+    var officers = NYFTYDB.officers;
     var addresses = ["Glendale", "AZ", "85308"];
+    //console.log(NYFTYDB.officers);
 
     /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
     var search_loan_officer = $("#search_loan_officer").find('#form-field-search_loan').length;
