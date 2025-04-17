@@ -100,9 +100,10 @@ jQuery(document).ready(function($){
     });
     $('#find-loan-officer').on('click', function (e) {
         var officer = $('#form-field-search_loan').val();
+        var address = $('#form-field-search_loan_city').val();
         e.preventDefault();
         e.stopPropagation();
-        window.location.href = "https://nyftylending.com/our-loan-officers/?r=1&q="+officer;
+        window.location.href = "https://nyftylending.com/our-loan-officers/?r=1&q="+officer+"&address="+address;
     });
 
     function autocomplete(inp, arr) {
