@@ -35,7 +35,7 @@ function hello_elementor_child_scripts_styles() {
     $db_officers = get_directory_listing_names();
 
     wp_enqueue_script('nyfty-script', get_stylesheet_directory_uri() . '/asset/custom-global.js', array('jquery'),
-        '1.7.7', true);
+        '1.7.8', true);
 
     wp_add_inline_script( 'nyfty-script', 'const NYFTYDB = ' . json_encode( array(
             'officers' => $db_officers,

@@ -131,24 +131,31 @@ jQuery(document).ready(function($){
             /*append the DIV element as a child of the autocomplete container:*/
             inp.parentNode.appendChild(a);
             /*for each item in the array...*/
-            for (i = 0; i < arr.length; i++) {
-                /*check if the item starts with the same letters as the text field value:*/
-                if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
-                    /*create a DIV element for each matching element:*/
-                    b = document.createElement("DIV");
-                    /*make the matching letters bold:*/
-                    b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
-                    b.innerHTML += arr[i].substr(val.length);
-                    /*insert a input field that will hold the current array item's value:*/
+            for (let i = 0; i < arr.length; i++) {
+                /* Check if the item includes the input value (case-insensitive):
+                * match any part of the string */
+                if (arr[i].toUpperCase().includes(val.toUpperCase())) {
+                    /* Create a DIV element for each matching element: */
+                    let b = document.createElement("DIV");
+
+                    /* Find the index of the match */
+                    let startIndex = arr[i].toUpperCase().indexOf(val.toUpperCase());
+                    let endIndex = startIndex + val.length;
+
+                    /* Make the matching part bold */
+                    b.innerHTML = arr[i].substring(0, startIndex);
+                    b.innerHTML += "<strong>" + arr[i].substring(startIndex, endIndex) + "</strong>";
+                    b.innerHTML += arr[i].substring(endIndex);
+
+                    /* Insert a hidden input field with the current item's value */
                     b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
-                    /*execute a function when someone clicks on the item value (DIV element):*/
+
+                    /* Add click event listener */
                     b.addEventListener("click", function(e) {
-                        /*insert the value for the autocomplete text field:*/
                         inp.value = this.getElementsByTagName("input")[0].value;
-                        /*close the list of autocompleted values,
-                        (or any other open lists of autocompleted values:*/
                         closeAllLists();
                     });
+
                     a.appendChild(b);
                 }
             }
