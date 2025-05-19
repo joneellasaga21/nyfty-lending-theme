@@ -44,25 +44,25 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 	</div>
     <script>
         // Add a click event listener to all elements with the class 'contact-me'
-        document.querySelectorAll('.contact-me').forEach(function(element) {
-            element.addEventListener('click', function() {
+        jQuery(document).ready(function ($) {
+            $('.contact-me').on('click', function() {
                 // Get the email and image from data attributes
-                var email = this.getAttribute('data-email');
-                var image = this.getAttribute('data-img');
+                var email = $(this).data('email');
+                var image = $(this).data('img');
 
                 // Ensure email and image exist before updating
                 if (email && image) {
                     setTimeout(function() {
                         // Set the email value in the input field
-                        var inputField = document.querySelector('#input_15_9');
-                        if (inputField) {
-                            inputField.value = email;
+                        var $inputField = $('#input_15_9');
+                        if ($inputField.length) {
+                            $inputField.val(email);
                         }
 
                         // Set the image source
-                        var imageElement = document.querySelector('#elementor-popup-modal-9253 img');
-                        if (imageElement) {
-                            imageElement.src = image;
+                        var $imageElement = $('#elementor-popup-modal-9253 img');
+                        if ($imageElement.length) {
+                            $imageElement.attr('src', image);
                         }
                     }, 300);
                 } else {
@@ -70,5 +70,6 @@ if ( ! defined( 'ABSPATH' ) ) exit;
                 }
             });
         });
+
     </script>
 </div>
